@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Role } from "./Role";
 
 
 @Entity()
@@ -14,5 +15,14 @@ export class User extends BaseEntity {
 
   @Column()
   passoword!:string
+
+  @Column()
+  phone!:string
+
+  @ManyToOne(() => Role, role => role.users, { onDelete:'SET NULL' })
+
+  @JoinColumn({ name: "role_id" })
+  role!: Role;
+
 
 }
