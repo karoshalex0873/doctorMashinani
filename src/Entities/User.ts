@@ -6,23 +6,21 @@ import { Role } from "./Role";
 export class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   user_id!: number;
-  
-  @Column()
-  name!:string
 
   @Column()
-  email!:string
+  name!: string
 
   @Column()
-  passoword!:string
+  email!: string
 
   @Column()
-  phone!:string
+  password!: string 
 
-  @ManyToOne(() => Role, role => role.users, { onDelete:'SET NULL' })
+  @Column({nullable:true})
+  phone!: string
+
+  @ManyToOne(() => Role, role => role.users, { onDelete: 'SET NULL' })
 
   @JoinColumn({ name: "role_id" })
   role!: Role;
-
-
 }

@@ -6,7 +6,7 @@ import { Response } from 'express'
 dotenv.config()
 
 
-export const generateToken=(res:Response,userId:number)=>{
+export const generateToken=(res:Response,userId:number,roleId:number)=>{
   const jwt_secret=process.env.JWT_SECRET
   const refreshSecret=process.env.REFRESH_TOKEN_SECRET
 
@@ -17,13 +17,13 @@ export const generateToken=(res:Response,userId:number)=>{
   try {
     // access Token 
     const accessToken=jwt.sign(
-      {userId},
+      {userId,roleId},
       jwt_secret,
       {expiresIn:"1d"}
     )
     // Refresh Token
     const refreshToken=jwt.sign(
-      {userId},
+      {userId,roleId},
       refreshSecret,
       {expiresIn:"30d"}
     )

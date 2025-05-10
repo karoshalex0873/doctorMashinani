@@ -1,5 +1,6 @@
-import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { PatientProfile } from "./PatientProfile";
+import { Diagnosis } from "./Diagnosis";
 
 
 @Entity()
@@ -18,4 +19,7 @@ export  class SymptomEntry extends BaseEntity{
 
   @CreateDateColumn()
   timestamp!: Date;
+
+  @OneToMany(() => Diagnosis, (diagnosis) => diagnosis.symptom)
+  diagnoses!: Diagnosis[];
 }

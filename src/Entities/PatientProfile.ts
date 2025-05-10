@@ -1,6 +1,7 @@
 import { BaseEntity, Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
 import { SymptomEntry } from "./SymptomEntry";
+import { NurseProfile } from "./NurseProfile";
 
 
 @Entity()
@@ -24,4 +25,6 @@ export class PatientProfile extends BaseEntity {
   @OneToMany(() => SymptomEntry, (symptomEntry) => symptomEntry.patient)
   symptomEntries!: SymptomEntry[];
 
+  @OneToMany(() => NurseProfile, nurse => nurse.assigned_patient, { cascade: true })
+  nurses!: NurseProfile[];
 }
