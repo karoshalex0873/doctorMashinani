@@ -7,7 +7,8 @@ import { User } from "../../Entities/User";
 
 export const protect=asyncHandler( async(req:UserRequest,res:Response,next:NextFunction)=>{
 
-  let token=req.cookies["access_token"] // Only get token from cookies
+  let token = req.cookies["accessToken"];
+ // Only get token from cookies
   if (!process.env.JWT_SECRET) {
     throw new Error("No JWT secret provided");
   }

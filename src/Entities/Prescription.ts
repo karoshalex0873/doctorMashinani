@@ -21,8 +21,6 @@ export class Prescription extends BaseEntity{
   @Column()
   instructions!: string;
 
-  
-
   @CreateDateColumn()
   prescribed_at!: Date;
 

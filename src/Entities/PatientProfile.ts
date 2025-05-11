@@ -22,9 +22,6 @@ export class PatientProfile extends BaseEntity {
   @Column()
   address!: string
 
-  @OneToMany(() => SymptomEntry, (symptomEntry) => symptomEntry.patient)
-  symptomEntries!: SymptomEntry[];
-
   @OneToMany(() => NurseProfile, nurse => nurse.assigned_patient, { cascade: true })
   nurses!: NurseProfile[];
 }

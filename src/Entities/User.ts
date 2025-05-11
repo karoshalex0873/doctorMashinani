@@ -1,5 +1,6 @@
-import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Role } from "./Role";
+import { SymptomEntry } from "./SymptomEntry";
 
 
 @Entity()
@@ -14,13 +15,15 @@ export class User extends BaseEntity {
   email!: string
 
   @Column()
-  password!: string 
+  password!: string
 
-  @Column({nullable:true})
+  @Column({ nullable: true })
   phone!: string
 
-  @ManyToOne(() => Role, role => role.users, { onDelete: 'SET NULL' })
+  @OneToMany(() => SymptomEntry, (symptomEntry) => symptomEntry.user)
+  symptomEntries!: SymptomEntry[];
 
+  @ManyToOne(() => Role, role => role.users, { onDelete: 'SET NULL' })
   @JoinColumn({ name: "role_id" })
   role!: Role;
 }
